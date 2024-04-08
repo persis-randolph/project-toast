@@ -14,7 +14,7 @@ function ToastPlayground() {
 
   const { addToast } = useContext(ToastContext);
 
-  const addNewToast = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     addToast(message, selectedVariant);
     setMessage('');
@@ -30,7 +30,7 @@ function ToastPlayground() {
 
       <ToastShelf />
 
-      <form className={styles.controlsWrapper} onSubmit={addNewToast}>
+      <form className={styles.controlsWrapper} onSubmit={handleSubmit}>
         <div className={styles.row}>
           <label
             htmlFor="message"
