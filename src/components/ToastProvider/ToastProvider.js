@@ -21,12 +21,17 @@ function ToastProvider({ children }) {
     setToasts(toastCopy);
   };
 
+  const dismissAllToasts = () => {
+    setToasts([]);
+  };
+
   return (
     <ToastContext.Provider
       value={{
         toasts,
         addToast,
         closeToast,
+        dismissAllToasts,
         setToasts,
       }}
     >
