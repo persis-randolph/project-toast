@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import Button from '../Button';
 
@@ -12,14 +12,27 @@ function ToastPlayground() {
   const [message, setMessage] = useState('');
   const [selectedVariant, setSelectedVariant] = useState('notice');
 
-  const { addToast } = useContext(ToastContext);
+  const { addToast, dismissAllToasts } = useContext(ToastContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addToast(message, selectedVariant);
-    setMessage('');
-    setSelectedVariant('notice');
+    if (message) {
+      addToast(message, selectedVariant);
+      setMessage('');
+      setSelectedVariant('notice');
+    }
   };
+
+  useEffect(() => {
+    function handleKeyDown(event) {
+      if (event.key === 'Escape') {
+        dismissAllToasts();
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [dismissAllToasts]);
 
   return (
     <div className={styles.wrapper}>
