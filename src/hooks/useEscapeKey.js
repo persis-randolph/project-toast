@@ -2,11 +2,11 @@ import { useEffect } from 'react';
 
 const useEscapeKey = (callback) => {
   useEffect(() => {
-    function handleKeyDown(event) {
+    const handleKeyDown = (event) => {
       if (event.key === 'Escape') {
         callback();
       }
-    }
+    };
 
     window.addEventListener('keydown', handleKeyDown);
 

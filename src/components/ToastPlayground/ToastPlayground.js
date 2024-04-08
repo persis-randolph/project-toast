@@ -10,7 +10,7 @@ const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 
 function ToastPlayground() {
   const [message, setMessage] = useState('');
-  const [selectedVariant, setSelectedVariant] = useState('notice');
+  const [selectedVariant, setSelectedVariant] = useState(VARIANT_OPTIONS[0]);
 
   const { addToast } = useContext(ToastContext);
 
@@ -19,7 +19,7 @@ function ToastPlayground() {
     if (message) {
       addToast(message, selectedVariant);
       setMessage('');
-      setSelectedVariant('notice');
+      setSelectedVariant(VARIANT_OPTIONS[0]);
     }
   };
 

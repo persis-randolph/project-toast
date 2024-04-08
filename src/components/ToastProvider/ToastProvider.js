@@ -16,17 +16,11 @@ function ToastProvider({ children }) {
   };
 
   const closeToast = (toastId) => {
-    const toastCopy = [...toasts];
-    const toastIndex = toastCopy.findIndex((toast) => toast.id === toastId);
-    toastCopy.splice(toastIndex, 1);
-    setToasts(toastCopy);
+    const newToasts = toasts.filter((toast) => toast.id !== toastId);
+    setToasts(newToasts);
   };
 
-  const dismissAllToasts = () => {
-    setToasts([]);
-  };
-
-  useEscapeKey(dismissAllToasts);
+  useEscapeKey(setToasts([]));
 
   return (
     <ToastContext.Provider
@@ -34,8 +28,6 @@ function ToastProvider({ children }) {
         toasts,
         addToast,
         closeToast,
-        dismissAllToasts,
-        setToasts,
       }}
     >
       {children}

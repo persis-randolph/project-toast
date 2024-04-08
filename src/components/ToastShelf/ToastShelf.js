@@ -11,7 +11,7 @@ function ToastShelf() {
     <ol
       className={styles.wrapper}
       role="region"
-      aria-live="polite"
+      aria-live="polite" // waits until SR is done announcing whatever it was doing
       aria-label="Notification"
     >
       {toasts.map(({ id, message, variant }) => (
